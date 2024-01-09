@@ -1,4 +1,4 @@
-package com.moutamid.expensemanager;
+package com.moutamid.whywhyexpense;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.fxn.stash.Stash;
-import com.moutamid.expensemanager.databinding.ActivityMainBinding;
+import com.moutamid.whywhyexpense.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.moutamid.expensemanager;
+package com.moutamid.whywhyexpense;
 
 public class Model {
     String name;

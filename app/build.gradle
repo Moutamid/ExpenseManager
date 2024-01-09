@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.moutamid.expensemanager'
+    namespace 'com.moutamid.whywhyexpense'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.moutamid.expensemanager"
+        applicationId "com.moutamid.whywhyexpense"
         minSdk 24
         targetSdk 33
         versionCode 1

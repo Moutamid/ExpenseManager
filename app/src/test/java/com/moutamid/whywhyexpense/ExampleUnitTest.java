@@ -1,4 +1,4 @@
-package com.moutamid.expensemanager;
+package com.moutamid.whywhyexpense;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.moutamid.expensemanager;
+package com.moutamid.whywhyexpense;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,19 +8,18 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fxn.stash.Stash;
-import com.moutamid.expensemanager.databinding.ActivityAddBinding;
+import com.moutamid.whywhyexpense.databinding.ActivitySubBinding;
 
 import java.util.ArrayList;
 
-public class AddActivity extends AppCompatActivity {
-    ActivityAddBinding binding;
+public class SubActivity extends AppCompatActivity {
+    ActivitySubBinding binding;
     ArrayList<Model> list;
-    double income, balance;
-
+    double spent, balance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAddBinding.inflate(getLayoutInflater());
+        binding = ActivitySubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.back.setOnClickListener(v -> onBackPressed());
@@ -28,34 +27,36 @@ public class AddActivity extends AppCompatActivity {
         list = new ArrayList<>();
         list = Stash.getArrayList(Constants.HISTORY, Model.class);
 
-        income = Double.parseDouble(Stash.getString(Constants.INCOME, "0"));
+        spent = Double.parseDouble(Stash.getString(Constants.SPENT, "0"));
         balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "0"));
-        Log.d("INCOME", "income " +  income);
+        Log.d("INCOME", "income " +  spent);
 
-        binding.addIncome.setOnClickListener(v -> {
+        binding.addSpent.setOnClickListener(v -> {
             if (binding.amount.getEditText().getText().toString().isEmpty()){
-                Toast.makeText(this, "Add income", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Add Amount", Toast.LENGTH_SHORT).show();
             } else {
                 Double amount = Double.parseDouble(binding.amount.getEditText().getText().toString());
 
-                list.add(new Model(binding.desc.getEditText().getText().toString(), amount, false));
-                balance = balance + amount;
-                amount = amount + income;
+                list.add(new Model(binding.desc.getEditText().getText().toString(), amount, true));
+                balance = balance - amount;
+                amount = amount + spent;
 
                 Stash.put(Constants.HISTORY, list);
-                Stash.put(Constants.INCOME, ""+amount);
+                Stash.put(Constants.SPENT, ""+amount);
                 Stash.put(Constants.TOTAL, ""+balance);
 
-                Toast.makeText(this, "Income Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Spent Added", Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
         });
 
     }
 
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
+
 }

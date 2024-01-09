@@ -1,4 +1,4 @@
-package com.moutamid.expensemanager;
+package com.moutamid.whywhyexpense;
 
 import android.app.Activity;
 import android.os.Build;
