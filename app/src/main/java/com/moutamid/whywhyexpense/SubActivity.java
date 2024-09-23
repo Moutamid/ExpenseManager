@@ -27,15 +27,15 @@ public class SubActivity extends AppCompatActivity {
         list = new ArrayList<>();
         list = Stash.getArrayList(Constants.HISTORY, Model.class);
 
-        spent = Double.parseDouble(Stash.getString(Constants.SPENT, "0"));
-        balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "0"));
+        spent = Double.parseDouble(Stash.getString(Constants.SPENT, "50"));
+        balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "200"));
         Log.d("INCOME", "income " +  spent);
 
         binding.addSpent.setOnClickListener(v -> {
             if (binding.amount.getEditText().getText().toString().isEmpty()){
                 Toast.makeText(this, "Add Amount", Toast.LENGTH_SHORT).show();
             } else {
-                Double amount = Double.parseDouble(binding.amount.getEditText().getText().toString());
+                double amount = Double.parseDouble(binding.amount.getEditText().getText().toString());
 
                 list.add(new Model(binding.desc.getEditText().getText().toString(), amount, true));
                 balance = balance - amount;

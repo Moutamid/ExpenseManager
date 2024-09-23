@@ -25,12 +25,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Constants.checkApp(this);
 
-        balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "0"));
-        income = Double.parseDouble(Stash.getString(Constants.INCOME, "0"));
-        spent = Double.parseDouble(Stash.getString(Constants.SPENT, "0"));
+        balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "200"));
+        income = Double.parseDouble(Stash.getString(Constants.INCOME, "250"));
+        spent = Double.parseDouble(Stash.getString(Constants.SPENT, "50"));
 
         list = new ArrayList<>();
         list = Stash.getArrayList(Constants.HISTORY, Model.class);
+        if (list.isEmpty()) {
+            list.add(new Model("Pay", 250.0, false));
+            list.add(new Model("Bill", 50.0, true));
+            Stash.put(Constants.HISTORY, list);
+        }
         Collections.reverse(list);
         binding.recyler.setLayoutManager(new LinearLayoutManager(this));
         binding.recyler.setHasFixedSize(false);

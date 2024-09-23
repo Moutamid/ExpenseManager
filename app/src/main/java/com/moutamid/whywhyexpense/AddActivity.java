@@ -28,15 +28,15 @@ public class AddActivity extends AppCompatActivity {
         list = new ArrayList<>();
         list = Stash.getArrayList(Constants.HISTORY, Model.class);
 
-        income = Double.parseDouble(Stash.getString(Constants.INCOME, "0"));
-        balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "0"));
+        income = Double.parseDouble(Stash.getString(Constants.INCOME, "250"));
+        balance = Double.parseDouble(Stash.getString(Constants.TOTAL, "200"));
         Log.d("INCOME", "income " +  income);
 
         binding.addIncome.setOnClickListener(v -> {
             if (binding.amount.getEditText().getText().toString().isEmpty()){
                 Toast.makeText(this, "Add income", Toast.LENGTH_SHORT).show();
             } else {
-                Double amount = Double.parseDouble(binding.amount.getEditText().getText().toString());
+                double amount = Double.parseDouble(binding.amount.getEditText().getText().toString());
 
                 list.add(new Model(binding.desc.getEditText().getText().toString(), amount, false));
                 balance = balance + amount;
